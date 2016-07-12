@@ -886,7 +886,15 @@ public class PySpliter {
 
 
     public List<String> getMostPossiblePyTerm( String spell ) {
-        return null;
+        List<String> list = Lists.newArrayList();
+        List<PyTerm> pyTerms = getAllPyTerms(spell);
+
+        if ( pyTerms == null || pyTerms.size() == 0 ) {
+            return list;
+        }
+
+        pyTerms = sortPyTerms(pyTerms);
+        return pyTerms.get(0).getList();
     }
 
     public List<PyTerm> getAllPyTerms( String spell ) {
@@ -973,7 +981,7 @@ public class PySpliter {
 
     public static void main(String[] args) {
         System.out.println(new PySpliter().extractMostMatchPyListWithFilt("zhanghao12414xianh", true));
-        String s = "zhang14zh";
+        String s = "zhanghao14zh";
         System.out.println(new PySpliter().getAllPyTerms(s));
 
     }
