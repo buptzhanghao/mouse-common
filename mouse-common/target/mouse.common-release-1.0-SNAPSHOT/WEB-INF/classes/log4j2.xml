@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <properties>
+        <property name="log.dir">./logs</property>
+    </properties>
+    <Appenders>
+
+        <!--Output the log into to Jva console-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5p][%F:%L] - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <!--Output the api debug to the APIDebugger-->
+        <RollingRandomAccessFile name="APIDebugger" fileName="${log.dir}/xm.index.api.log"
+                                 filePattern="${log.dir}/xm.index.api.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p][%c{1}] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!--Output the service debug to the ServiceDebugger-->
+        <RollingRandomAccessFile name="ServiceDebugger" fileName="${log.dir}/xm.index.service.log"
+                                 filePattern="${log.dir}/xm.index.service.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p][%c{1}] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!--Output the adaptor debug to the AdaptorDebugger-->
+        <RollingRandomAccessFile name="AdaptorDebugger" fileName="${log.dir}/xm.index.adaptor.log"
+                                 filePattern="${log.dir}/xm.index.adaptor.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p][%c{1}] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!--Output the util debug to the UtilDebugger-->
+        <RollingRandomAccessFile name="UtilDebugger" fileName="${log.dir}/xm.index.util.log"
+                                 filePattern="${log.dir}/xm.index.util.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p][%c{1}] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!--Output the es client debug to the ESClientDebugger-->
+        <RollingRandomAccessFile name="ESClientDebugger" fileName="${log.dir}/xm.index.es.client.log"
+                                 filePattern="${log.dir}/xm.index.es.client.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p][%c{1}] - %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.sankuai.xm.search.index.api" level="info" additivity="false">
+            <AppenderRef ref="APIDebugger"/>
+        </Logger>
+        <Logger name="com.sankuai.xm.search.index.service" level="info" additivity="false">
+            <AppenderRef ref="ServiceDebugger"/>
+        </Logger>
+        <Logger name="com.sankuai.xm.search.index.adaptor" level="info" additivity="false">
+            <AppenderRef ref="AdaptorDebugger"/>
+        </Logger>
+        <Logger name="com.sankuai.xm.search.index.util" level="info" additivity="false">
+            <AppenderRef ref="UtilDebugger"/>
+        </Logger>
+        <Logger name="com.sankuai.xm.elasticsearch" level="info" additivity="false">
+            <AppenderRef ref="ESClientDebugger"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
